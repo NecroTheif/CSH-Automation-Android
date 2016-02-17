@@ -3,6 +3,7 @@ package com.example.svaswani.csh_automation_android;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.http.GET;
+import retrofit.http.PUT;
 import retrofit.http.Query;
 
 /**
@@ -36,5 +37,8 @@ public class CSHAutomationAPIClient {
         @GET("https://control.csh.rit.edu/lounge/projector")
         void projectorStatus(@Query("token") String token, Callback<ProjectorStatusModel> cb);
 
+        // turn projector on and off
+        @PUT("https://control.csh.rit.edu/lounge/projector/power")
+        void togglePower(@Query("token") String token, @Query("power[state]") int state, Callback<ProjectorPowerModel> cb);
     }
 }
