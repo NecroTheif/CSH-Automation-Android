@@ -1,6 +1,9 @@
 package com.example.svaswani.csh_automation_android;
 
+import retrofit.Callback;
 import retrofit.RestAdapter;
+import retrofit.http.GET;
+import retrofit.http.Query;
 
 /**
  * Created by svaswani on 2/16/2016.
@@ -26,6 +29,12 @@ public class CSHAutomationAPIClient {
 
     // all api calls go here inside the interface
     public interface CSHAutomationApiInterface {
+
+        String baseUrl = "https://control.csh.rit.edu/lounge/";
+
+        // get projector info
+        @GET("https://control.csh.rit.edu/lounge/projector")
+        void projectorStatus(@Query("token") String token, Callback<ProjectorStatusModel> cb);
 
     }
 }
