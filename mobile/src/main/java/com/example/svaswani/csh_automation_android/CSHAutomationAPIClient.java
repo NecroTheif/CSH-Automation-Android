@@ -1,5 +1,9 @@
 package com.example.svaswani.csh_automation_android;
 
+import com.example.svaswani.csh_automation_android.models.LightStatusModel;
+import com.example.svaswani.csh_automation_android.models.ProjectorPowerModel;
+import com.example.svaswani.csh_automation_android.models.ProjectorStatusModel;
+
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.http.GET;
@@ -40,5 +44,9 @@ public class CSHAutomationAPIClient {
         // turn projector on and off
         @PUT("https://control.csh.rit.edu/lounge/projector/power")
         void togglePower(@Query("token") String token, @Query("power[state]") int state, Callback<ProjectorPowerModel> cb);
+
+        // get lights info
+        @GET("https://control.csh.rit.edu/lounge/lights/")
+        void lightStatus(@Query("token") String token, Callback<LightStatusModel> cb);
     }
 }
