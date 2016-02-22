@@ -23,9 +23,9 @@ class ProjectorModel {
     private String getInput() {return input;}
     public void setInput(String input) {this.input = input;}
 
-    private String hours;
-    private String getHours() {return hours;}
-    public void setHours(String hours) {this.hours = hours;}
+    private int hours;
+    private int getHours() {return hours;}
+    public void setHours(int hours) {this.hours = hours;}
 
     private boolean blank;
     private boolean getBlank() {return blank;}
