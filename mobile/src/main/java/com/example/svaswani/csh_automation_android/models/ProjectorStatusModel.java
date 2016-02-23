@@ -1,4 +1,4 @@
-package com.example.svaswani.csh_automation_android;
+package com.example.svaswani.csh_automation_android.models;
 
 /**
  * Created by svaswani on 2/16/2016.
