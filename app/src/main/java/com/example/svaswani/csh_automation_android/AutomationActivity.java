@@ -21,6 +21,9 @@ public class AutomationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_automation);
 
+        // changing actionbar title
+        setTitle("CSH Automation");
+
         // Setup toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
