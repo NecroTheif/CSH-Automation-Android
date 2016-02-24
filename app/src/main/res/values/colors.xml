@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--<color name="colorPrimary">#3F51B5</color>-->
-    <!--<color name="colorPrimaryDark">#303F9F</color>-->
-    <!--<color name="colorAccent">#FF4081</color>-->
-    <color name ="cshPink">#E11C52</color>
-    <color name ="cshPurple">#B0197E</color>
-
-    <color name="colorPrimary">@color/cshPurple</color>
-    <color name="colorPrimaryDark">@color/cshPurple</color>
-    <color name="colorAccent">@color/cshPink</color>
-
-    <color name="white">#FFFFFF</color>
-    <color name="enabled">#00FF00</color>
-    <color name="disabled">#FF0000</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#B61643</color>
+    <!--<color name="colorPrimary">#B0197E</color>-->
+    <!--<color name="colorPrimaryDark">#B61643</color>-->
+    <!--<color name="colorAccent">#7E397A</color>-->
+    <color name="cshPink">#E11C52</color>
+    <color name="cshPinkDark">#B61643</color>
+    <color name="cshPurple">#B0197E</color>
+    <color name="cshPurplePressed">#7E397A</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 </resources>
