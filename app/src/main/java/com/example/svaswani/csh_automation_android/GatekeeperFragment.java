@@ -9,12 +9,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class GatekeeperFragment extends Fragment {
 
-    public GatekeeperFragment() {
-
-    }
+    private LinearLayout mBaseLayout;
 
     /**
      * Define how this fragment should appear when it's rendered.
@@ -23,8 +23,16 @@ public class GatekeeperFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.gatekeeper_fragment, container, false);
+        //Toast.makeText(getContext(), "Hi", Toast.LENGTH_LONG).show();
+        mBaseLayout = (LinearLayout) inflater.inflate(R.layout.gatekeeper_fragment, container, false);
+        Button aButton = (Button) mBaseLayout.findViewById(R.id.test_button2);
+        aButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Clicked.");
+            }
+        });
 
-        return rootView;
+        return mBaseLayout;
     }
 }

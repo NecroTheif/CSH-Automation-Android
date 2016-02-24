@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    <Button
+       <Button
         android:layout_width="100dp"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
         android:text="Test"
-        android:id="@+id/test1"
+        android:id="@+id/test_button2"
         android:background="@color/cshPink"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:layout_marginTop="24dp" />-->
+        android:layout_marginTop="24dp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/gatekeeper_recycler"
