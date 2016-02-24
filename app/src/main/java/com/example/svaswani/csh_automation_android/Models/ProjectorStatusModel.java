@@ -36,21 +36,21 @@ class ProjectorModel {
 
 class ProjectorSourcesModel {
 
-    private String HDMI_1;
-    private String getHDMI_1() {return HDMI_1;}
-    public void setHDMI_1(String HDMI_1) {this.HDMI_1 = HDMI_1;}
+    private String HDMI1;
+    private String getHDMI1() {return HDMI1;}
+    public void setHDMI1(String HDMI1) {this.HDMI1 = HDMI1;}
 
-    private String HDMI_2;
-    private String getHDMI_2() {return HDMI_2;}
-    public void setHDMI_2(String HDMI_2) {this.HDMI_2 = HDMI_2;}
+    private String HDMI2;
+    private String getHDMI2() {return HDMI2;}
+    public void setHDMI2(String HDMI2) {this.HDMI2 = HDMI2;}
 
-    private String computer_1;
-    private String getComputer_1() {return computer_1;}
-    public void setComputer_1(String computer_1) {this.computer_1 = computer_1;}
+    private String computer1;
+    private String getComputer1() {return computer1;}
+    public void setComputer1(String computer1) {this.computer1 = computer1;}
 
-    private String computer_2;
-    private String getComputer_2() {return computer_2;}
-    public void setComputer_2(String computer_2) {this.computer_2 = computer_2;}
+    private String computer2;
+    private String getComputer2() {return computer2;}
+    public void setComputer2(String computer2) {this.computer2 = computer2;}
 
     private String composite;
     private String getComposite() {return composite;}
