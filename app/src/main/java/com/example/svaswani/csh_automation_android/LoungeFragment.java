@@ -12,12 +12,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.svaswani.csh_automation_android.Models.AutomationResponseModel;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class LoungeFragment extends Fragment {
 
     private LinearLayout mBaseLayout;
+    public String token = "E94NE43NMIIXXVVO2YST";
 
     /**
      * Define how this fragment should appear when it's rendered.
+     *
      * @return The view of this fragment.
      */
     @Override
@@ -25,14 +34,29 @@ public class LoungeFragment extends Fragment {
 
         //Toast.makeText(getContext(), "Hi", Toast.LENGTH_LONG).show();
         mBaseLayout = (LinearLayout) inflater.inflate(R.layout.lounge_fragment, container, false);
-        Button aButton = (Button) mBaseLayout.findViewById(R.id.test_button);
-        aButton.setOnClickListener(new View.OnClickListener() {
+        Button testButton = (Button) mBaseLayout.findViewById(R.id.test_button);
+        testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("Clicked.");
+                Call<AutomationResponseModel> call = CSHAutomationAPIClient.getClient().togglePower(token, true);
+                call.enqueue(new Callback<AutomationResponseModel>() {
+                    @Override
+                    public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
+                        System.out.println("Success.");
+                    }
+
+                    @Override
+                    public void onFailure(Call<AutomationResponseModel> call, Throwable t) {
+                        System.out.println("Fail.");
+                    }
+                });
+
             }
+
         });
 
         return mBaseLayout;
     }
 }
+

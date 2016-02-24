@@ -1,14 +1,19 @@
 package com.example.svaswani.csh_automation_android;
 
+import com.example.svaswani.csh_automation_android.Models.AutomationResponseModel;
+import com.example.svaswani.csh_automation_android.Models.AutomationStatusModel;
 import com.example.svaswani.csh_automation_android.Models.LightStatusModel;
-import com.example.svaswani.csh_automation_android.Models.ProjectorPowerModel;
 import com.example.svaswani.csh_automation_android.Models.ProjectorStatusModel;
 
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.http.GET;
-import retrofit.http.PUT;
-import retrofit.http.Query;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.GsonConverterFactory;
+import retrofit2.Retrofit;
+import retrofit2.http.GET;
+import retrofit2.http.PUT;
+import retrofit2.http.Query;
+
 
 /**
  * Created by svaswani on 2/16/2016.
@@ -22,11 +27,12 @@ public class CSHAutomationAPIClient {
     // must be an api interface that creates the rest adapter
     public static CSHAutomationApiInterface getClient() {
         if (cshAutomationService == null) {
-            RestAdapter restAdapter = new RestAdapter.Builder()
-                    .setEndpoint("https://control.csh.rit.edu/lounge/") // csh-automation api url
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://control.csh.rit.edu:8080/lounge/") // csh-automation api url
+                    .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-            cshAutomationService = restAdapter.create(CSHAutomationApiInterface.class);
+            cshAutomationService = retrofit.create(CSHAutomationApiInterface.class);
         }
 
         return cshAutomationService;
@@ -35,18 +41,16 @@ public class CSHAutomationAPIClient {
     // all api calls go here inside the interface
     public interface CSHAutomationApiInterface {
 
-        String baseUrl = "https://control.csh.rit.edu/lounge/";
-
         // get projector info
-        @GET("https://control.csh.rit.edu/lounge/projector")
+        @GET("/lounge/projector")
         void projectorStatus(@Query("token") String token, Callback<ProjectorStatusModel> cb);
 
         // turn projector on and off
-        @PUT("https://control.csh.rit.edu/lounge/projector/power")
-        void togglePower(@Query("token") String token, @Query("power[state]") int state, Callback<ProjectorPowerModel> cb);
+        @PUT("/lounge/projector/power")
+        Call<AutomationResponseModel> togglePower(@Query("token") String token, @Query("power[state]") boolean state);
 
         // get lights info
-        @GET("https://control.csh.rit.edu/lounge/lights/")
+        @GET("/lounge/lights/")
         void lightStatus(@Query("token") String token, Callback<LightStatusModel> cb);
     }
 }

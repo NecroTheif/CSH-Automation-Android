@@ -9,14 +9,14 @@ public class ProjectorPowerModel {
     public boolean getSuccess() {return success;}
     public void setSuccess(boolean success) {this.success = success;}
 
-    private ProjectorModelOnOff onOff;
+    //private ProjectorModelOnOff onOff;
 
 }
 
-class ProjectorModelOnOff {
-
-    private String power;
-    private String getPower() {return power;}
-    public void setPower(String power) {this.power = power;}
-
-}
+//class ProjectorModelOnOff {
+//
+//    private String power;
+//    private String getPower() {return power;}
+//    public void setPower(String power) {this.power = power;}
+//
+//}
