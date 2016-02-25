@@ -6,28 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    <ScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lounge_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/lounge_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">-->
-
-            <Button
-                android:id="@+id/test_button"
-                android:layout_width="85dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center_horizontal"
-                android:text="Test"
-                android:background="@color/cshPink"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginTop="24dp" />
-
-<!--        </LinearLayout>
-
-    </ScrollView>-->
+        android:layout_height="match_parent" />
 
 </LinearLayout>
