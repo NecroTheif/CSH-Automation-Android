@@ -1,15 +1,17 @@
 package com.example.svaswani.csh_automation_android;
 
 import com.example.svaswani.csh_automation_android.Models.AutomationResponseModel;
-import com.example.svaswani.csh_automation_android.Models.AutomationStatusModel;
 import com.example.svaswani.csh_automation_android.Models.LightStatusModel;
 import com.example.svaswani.csh_automation_android.Models.ProjectorStatusModel;
 
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
@@ -47,10 +49,22 @@ public class CSHAutomationAPIClient {
 
         // turn projector on and off
         @PUT("/lounge/projector/power")
-        Call<AutomationResponseModel> togglePower(@Query("token") String token, @Query("power[state]") boolean state);
+        Call<AutomationResponseModel> togglePower(@Body RequestBody body);
 
         // get lights info
         @GET("/lounge/lights/")
         void lightStatus(@Query("token") String token, Callback<LightStatusModel> cb);
+    }
+
+    public static RequestBody togglePowerBody(String token, boolean state){
+        return  RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
+                String.format("{\n" +
+                        "  \"token\": {\n" +
+                        "    \"id\": \"" + token + "\"\n" +
+                        "  },\n" +
+                        "  \"power\": {\n" +
+                        "    \"state\":" + state + "\n" +
+                        "  }\n" +
+                        "}"));
     }
 }

@@ -10,7 +10,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -22,6 +21,7 @@ import java.util.List;
 
 import com.example.svaswani.csh_automation_android.Models.AutomationResponseModel;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +30,7 @@ public class LoungeFragment extends Fragment {
 
     private LinearLayout mBaseLayout;
     public String token = "E94NE43NMIIXXVVO2YST";
+
 
     /**
      * Define how this fragment should appear when it's rendered.
@@ -47,20 +48,19 @@ public class LoungeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 System.out.println("Clicked Toggle Projector");
-                Call<AutomationResponseModel> call = CSHAutomationAPIClient.getClient().togglePower(token, true);
-                call.enqueue(new Callback<AutomationResponseModel>() {
+
+                Call<AutomationResponseModel> call = CSHAutomationAPIClient.getClient().togglePower(CSHAutomationAPIClient.togglePowerBody(token, true));
+                call.enqueue((new Callback<AutomationResponseModel>() {
                     @Override
                     public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
-                        System.out.println("Success.");
                         Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(Call<AutomationResponseModel> call, Throwable t) {
-                        System.out.println("Fail.");
                         Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
                     }
-                });
+                }));
             }
         }));
 
