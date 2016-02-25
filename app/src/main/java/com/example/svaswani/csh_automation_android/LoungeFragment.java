@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.example.svaswani.csh_automation_android.Models.AutomationResponseModel;
+import com.example.svaswani.csh_automation_android.Models.ProjectorStatusModel;
+import com.google.common.collect.ImmutableMap;
 
 
 import retrofit2.Call;
@@ -29,8 +34,6 @@ import retrofit2.Response;
 public class LoungeFragment extends Fragment {
 
     private LinearLayout mBaseLayout;
-    public String token = "E94NE43NMIIXXVVO2YST";
-
 
     /**
      * Define how this fragment should appear when it's rendered.
@@ -48,19 +51,35 @@ public class LoungeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 System.out.println("Clicked Toggle Projector");
-
-                Call<AutomationResponseModel> call = CSHAutomationAPIClient.getClient().togglePower(CSHAutomationAPIClient.togglePowerBody(token, true));
-                call.enqueue((new Callback<AutomationResponseModel>() {
+                /*Call<ProjectorStatusModel> callProjectorStatus = CSHAutomationAPIClient.getClient().projectorStatus(RequestBodyMaps.getRequestBody(RequestBodyMaps.tokenRequestMap));
+                callProjectorStatus.enqueue(new Callback<ProjectorStatusModel>() {
                     @Override
-                    public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
-                        Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
-                    }
+                    public void onResponse(Call<ProjectorStatusModel> call, Response<ProjectorStatusModel> response) {
+                        // variable for power state
+                        boolean updatedPower = !response.body().projector.getPower();
+*/
+
+                Log.i("Test", RequestBodyMaps.getJSON(RequestBodyMaps.powerMap(true)));
+                        Call<AutomationResponseModel> callProjectorPower = CSHAutomationAPIClient.getClient().togglePower(RequestBodyMaps.getRequestBody(RequestBodyMaps.powerMap(true)));
+                        callProjectorPower.enqueue((new Callback<AutomationResponseModel>() {
+                            @Override
+                            public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
+                                Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onFailure(Call<AutomationResponseModel> call, Throwable t) {
+                                Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
+                            }
+                        }));
+                   /* }
 
                     @Override
-                    public void onFailure(Call<AutomationResponseModel> call, Throwable t) {
+                    public void onFailure(Call<ProjectorStatusModel> call, Throwable t) {
                         Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
                     }
-                }));
+                });*/
+
             }
         }));
 

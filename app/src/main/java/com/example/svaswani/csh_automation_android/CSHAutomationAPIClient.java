@@ -5,6 +5,8 @@ import com.example.svaswani.csh_automation_android.Models.LightStatusModel;
 import com.example.svaswani.csh_automation_android.Models.ProjectorStatusModel;
 
 
+import java.util.Map;
+
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -45,7 +47,7 @@ public class CSHAutomationAPIClient {
 
         // get projector info
         @GET("/lounge/projector")
-        void projectorStatus(@Query("token") String token, Callback<ProjectorStatusModel> cb);
+        Call<ProjectorStatusModel> projectorStatus(@Body RequestBody body);
 
         // turn projector on and off
         @PUT("/lounge/projector/power")
@@ -56,15 +58,4 @@ public class CSHAutomationAPIClient {
         void lightStatus(@Query("token") String token, Callback<LightStatusModel> cb);
     }
 
-    public static RequestBody togglePowerBody(String token, boolean state){
-        return  RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
-                String.format("{\n" +
-                        "  \"token\": {\n" +
-                        "    \"id\": \"" + token + "\"\n" +
-                        "  },\n" +
-                        "  \"power\": {\n" +
-                        "    \"state\":" + state + "\n" +
-                        "  }\n" +
-                        "}"));
-    }
 }
