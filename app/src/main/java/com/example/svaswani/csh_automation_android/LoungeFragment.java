@@ -29,6 +29,7 @@ import com.google.common.collect.ImmutableMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
 
 public class LoungeFragment extends Fragment {
@@ -50,6 +51,7 @@ public class LoungeFragment extends Fragment {
         recyclerAdapter.addCard(new CardItem("Toggle Projector", "Turn the projector on or off", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 System.out.println("Clicked Toggle Projector");
                 /*Call<ProjectorStatusModel> callProjectorStatus = CSHAutomationAPIClient.getClient().projectorStatus(RequestBodyMaps.getRequestBody(RequestBodyMaps.tokenRequestMap));
                 callProjectorStatus.enqueue(new Callback<ProjectorStatusModel>() {
