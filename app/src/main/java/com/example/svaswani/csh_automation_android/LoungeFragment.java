@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,18 +47,20 @@ public class LoungeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 System.out.println("Clicked Toggle Projector");
-                //Call<AutomationResponseModel> call = CSHAutomationAPIClient.getClient().togglePower(token, true);
-                //call.enqueue(new Callback<AutomationResponseModel>() {
-                //    @Override
-                //    public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
-                //        System.out.println("Success.");
-                //    }
+                Call<AutomationResponseModel> call = CSHAutomationAPIClient.getClient().togglePower(token, true);
+                call.enqueue(new Callback<AutomationResponseModel>() {
+                    @Override
+                    public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
+                        System.out.println("Success.");
+                        Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                    }
 
-                //    @Override
-                //    public void onFailure(Call<AutomationResponseModel> call, Throwable t) {
-                //        System.out.println("Fail.");
-                //    }
-                //});
+                    @Override
+                    public void onFailure(Call<AutomationResponseModel> call, Throwable t) {
+                        System.out.println("Fail.");
+                        Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }));
 
