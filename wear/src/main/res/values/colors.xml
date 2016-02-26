@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="cshPink">#E11C52</color>
+    <color name="cshPinkDark">#B61643</color>
+    <color name="cshPurple">#B0197E</color>
+    <color name="cshPurplePressed">#7E397A</color>
+
+</resources>
