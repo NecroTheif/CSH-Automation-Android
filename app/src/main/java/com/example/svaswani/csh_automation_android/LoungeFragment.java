@@ -4,6 +4,7 @@ package com.example.svaswani.csh_automation_android;
  * Created by svaswani on 2/23/2016.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -60,9 +61,7 @@ public class LoungeFragment extends Fragment {
                         // variable for power state
                         boolean updatedPower = !response.body().projector.getPower();
 */
-
-                Log.i("Test", RequestBodyMaps.getJSON(RequestBodyMaps.powerMap(true)));
-                        Call<AutomationResponseModel> callProjectorPower = CSHAutomationAPIClient.getClient().togglePower(RequestBodyMaps.getRequestBody(RequestBodyMaps.powerMap(true)));
+                        Call<AutomationResponseModel> callProjectorPower = CSHAutomationAPIClient.getClient().sendLoungePUTMessage("projector/power", RequestBodyMaps.powerBody(true));
                         callProjectorPower.enqueue((new Callback<AutomationResponseModel>() {
                             @Override
                             public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
@@ -85,10 +84,87 @@ public class LoungeFragment extends Fragment {
             }
         }));
 
-        recyclerAdapter.addCard(new CardItem("Toggle Lights", "Turn the lights on or off", new View.OnClickListener() {
+        recyclerAdapter.addCard(new CardItem("Blank Projector", "Blanks the projector", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Clicked Blank Projector");
+                Call<AutomationResponseModel> callProjectorBlank = CSHAutomationAPIClient.getClient().sendLoungePUTMessage("projector/blank", RequestBodyMaps.tokeWrapBody);
+                callProjectorBlank.enqueue(new Callback<AutomationResponseModel>() {
+                    @Override
+                    public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
+                        Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<AutomationResponseModel> call, Throwable t) {
+                        Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }));
+
+        recyclerAdapter.addCard(new CardItem("Lights", "Open the lights panel", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("Clicked Toggle Lights");
+                startActivity(new Intent(getContext(), LightActivity.class));
+            }
+        }));
+
+        recyclerAdapter.addCard(new CardItem("Receiver Power", "Turn the receiver on or off", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Clicked Receiver Power");
+                Call<AutomationResponseModel> callReceiverPower = CSHAutomationAPIClient.getClient().sendLoungePUTMessage("receiver/power", RequestBodyMaps.powerBody(true));
+                callReceiverPower.enqueue(new Callback<AutomationResponseModel>() {
+                    @Override
+                    public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
+                        Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<AutomationResponseModel> call, Throwable t) {
+                        Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }));
+
+        recyclerAdapter.addCard(new CardItem("Receiver Mute", "Mute or unmute the receiver", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Clicked Receiver Mute");
+                Call<AutomationResponseModel> callReceiverMute = CSHAutomationAPIClient.getClient().sendLoungePUTMessage("receiver/mute", RequestBodyMaps.tokeWrapBody);
+                callReceiverMute.enqueue(new Callback<AutomationResponseModel>() {
+                    @Override
+                    public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
+                        Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<AutomationResponseModel> call, Throwable t) {
+                        Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }));
+
+        recyclerAdapter.addCard(new CardItem("Radiator Power", "Turn the radiator on or off", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Clicked Radiator Power");
+                Call<AutomationResponseModel> callReceiverMute = CSHAutomationAPIClient.getClient().sendLoungePUTMessage("lounge/radiator", RequestBodyMaps.radiatorBody(true));
+                callReceiverMute.enqueue(new Callback<AutomationResponseModel>() {
+                    @Override
+                    public void onResponse(Call<AutomationResponseModel> call, Response<AutomationResponseModel> response) {
+                        Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<AutomationResponseModel> call, Throwable t) {
+                        Toast.makeText(getActivity(), "Fail", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         }));
 
