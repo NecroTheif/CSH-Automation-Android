@@ -4,6 +4,7 @@ package com.example.svaswani.csh_automation_android;
  * Created by svaswani on 2/23/2016.
  */
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -85,10 +86,11 @@ public class LoungeFragment extends Fragment {
             }
         }));
 
-        recyclerAdapter.addCard(new CardItem("Toggle Lights", "Turn the lights on or off", new View.OnClickListener() {
+        recyclerAdapter.addCard(new CardItem("Lights", "Open the lights panel", new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("Clicked Toggle Lights");
+                startActivity(new Intent(getContext(), LightActivity.class));
             }
         }));
 
