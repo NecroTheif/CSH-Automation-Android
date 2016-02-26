@@ -16,6 +16,7 @@ import retrofit2.Retrofit;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 
@@ -49,9 +50,9 @@ public class CSHAutomationAPIClient {
         @GET("/lounge/projector")
         Call<ProjectorStatusModel> projectorStatus(@Body RequestBody body);
 
-        // turn projector on and off
-        @PUT("/lounge/projector/power")
-        Call<AutomationResponseModel> togglePower(@Body RequestBody body);
+        // send PUT to object in lounge
+        @PUT("/lounge/{object}")
+        Call<AutomationResponseModel> sendLoungePUTMessage(@Path("object") String object, @Body RequestBody body);
 
         // get lights info
         @GET("/lounge/lights/")
