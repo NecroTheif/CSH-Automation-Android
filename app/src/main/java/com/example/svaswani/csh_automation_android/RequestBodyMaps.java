@@ -28,7 +28,7 @@ public class RequestBodyMaps {
         String json = "{";
         for(Map.Entry<String, Object> field : fields.entrySet()){
 
-            json += field.getKey()+":";
+            json += "\""+field.getKey()+"\":";
 
             if(field.getValue() instanceof Map)
                 json += getJSON((Map<String, Object>) field.getValue());
